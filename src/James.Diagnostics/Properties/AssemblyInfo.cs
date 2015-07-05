@@ -8,7 +8,7 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyTitle("James.Diagnostics")]
 [assembly: AssemblyDescription("A library of utilities for handling monitoring of applications.")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("")]
+[assembly: AssemblyCompany("Todd Meinershagen")]
 [assembly: AssemblyProduct("James.Diagnostics")]
 [assembly: AssemblyCopyright("Copyright © QualitySoftwareMatters 2015")]
 [assembly: AssemblyTrademark("")]
