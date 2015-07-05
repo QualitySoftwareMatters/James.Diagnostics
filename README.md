@@ -1,2 +1,2 @@
 # James.Diagnostics
-A library for adding diagnostics to your application/service in .NET.
+A library of utilities for handling monitoring of .NET applications.
