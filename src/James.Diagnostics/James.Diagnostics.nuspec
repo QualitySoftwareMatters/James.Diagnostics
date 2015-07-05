@@ -1,11 +1,11 @@
-﻿﻿<?xml version="1.0"?>
-<package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
+﻿<?xml version="1.0"?>
+<package >
 	<metadata>
 		<id>$id$</id>
 		<version>$version$</version>
+		<title>$title$</title>
 		<authors>$author$</authors>
 		<owners>$author$</owners>
-		<title>$title$</title>
 		<description>$description$</description>
 		<licenseUrl>https://github.com/QualitySoftwareMatters/James.Diagnostics/LICENSE</licenseUrl>
 		<projectUrl>https://github.com/QualitySoftwareMatters/James.Diagnostics/wiki</projectUrl>
