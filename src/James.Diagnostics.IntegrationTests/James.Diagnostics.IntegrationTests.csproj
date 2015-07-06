@@ -38,6 +38,9 @@
     <Reference Include="FluentAssertions.Core">
       <HintPath>..\packages\FluentAssertions.3.4.1\lib\net45\FluentAssertions.Core.dll</HintPath>
     </Reference>
+    <Reference Include="James.Testing">
+      <HintPath>..\packages\James.Testing.1.0.9.0\lib\net45\James.Testing.dll</HintPath>
+    </Reference>
     <Reference Include="Magnum">
       <HintPath>..\packages\Magnum.2.1.3\lib\NET40\Magnum.dll</HintPath>
     </Reference>
@@ -60,8 +63,11 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DoubleExtensionsTests.cs" />
+    <Compile Include="given_function_fails_when_monitoring_with_return.cs" />
+    <Compile Include="given_function_returns_successfully_when_monitoring_with_return.cs" />
     <Compile Include="MonitoringTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="MonitoringTestsBase.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

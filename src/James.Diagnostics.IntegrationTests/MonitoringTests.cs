@@ -5,7 +5,9 @@ using System.Threading.Tasks;
 
 using FluentAssertions;
 
-using Magnum.PerformanceCounters;
+using James.Testing;
+
+using Magnum.Extensions;
 
 using NSubstitute;
 
@@ -14,14 +16,10 @@ using NUnit.Framework;
 namespace James.Diagnostics.IntegrationTests
 {
 	[TestFixture]
-	public class MonitoringTests
+	public class MonitoringTests : MonitoringTestsBase
 	{
-		private const string ExecutionTimeCounter = "ExecutionTime";
-		private const string SuccessCounter = "Succeeded";
-		private const string FailureCounter = "Failed";
-
 		[Test]
-		public void given_function_returns_successfully_when_monitoring_should_increment_requests_succeeded_counter()
+		public void given_boolean_function_returns_true_when_monitoring_should_increment_requests_succeeded_counter()
 		{
 			var valueBefore = GetValue(SuccessCounter);
 
@@ -34,14 +32,12 @@ namespace James.Diagnostics.IntegrationTests
 		[Test]
 		public void given_action_does_not_throw_when_monitoring_should_increment_requests_succeeded_counter()
 		{
-			var counter = GetCounter(SuccessCounter);
-			var valueBefore = counter == null ? 0 : counter.RawValue;
+			var valueBefore = GetValue(SuccessCounter);
 
 			Action action = () => Debug.Print("This is a test.");
 			Monitoring<MonitoringTestsCounters>.Monitor(action);
 
-			counter = counter ?? GetCounter(SuccessCounter);
-			counter.RawValue.Should().Be(valueBefore + 1);
+			GetValue(SuccessCounter).Should().Be(valueBefore + 1);
 		}
 
 		[Test]
@@ -49,14 +45,12 @@ namespace James.Diagnostics.IntegrationTests
 		{
 			const string categoryName = "AnotherMonitoringTestsCounters";
 
-			var counter = GetCounter(SuccessCounter, categoryName);
-			var valueBefore = counter == null ? 0 : counter.RawValue;
+			var valueBefore = GetValue(SuccessCounter, categoryName);
 
 			Func<bool> function = () => true;
 			Monitoring<AnotherMonitoringTestsCounters>.Monitor(function);
 
-			counter = counter ?? GetCounter(SuccessCounter, categoryName);
-			counter.RawValue.Should().Be(valueBefore + 1);
+			GetValue(SuccessCounter, categoryName).Should().Be(valueBefore + 1);
 		}
 
 		[Test]
@@ -118,7 +112,7 @@ namespace James.Diagnostics.IntegrationTests
 
 			Func<bool> function = () => { throw new Exception(); };
 			Action action = () => Monitoring<MonitoringTestsCounters>.Monitor(function);
-			GulpException(action);
+			action.GulpException();
 
 			GetValue(FailureCounter).Should().Be(valueBefore + 1);
 		}
@@ -130,7 +124,7 @@ namespace James.Diagnostics.IntegrationTests
 
 			Func<bool> function = () => { throw new Exception(); };
 			Action action = () => Monitoring<MonitoringTestsCounters>.Monitor(function);
-			GulpException(action);
+			action.GulpException();
 
 			GetValue(ExecutionTimeCounter).Should().Be(valueBefore);
 		}
@@ -142,7 +136,7 @@ namespace James.Diagnostics.IntegrationTests
 
 			Action action = () => { throw new Exception(); };
 			Action outerAction = () => Monitoring<MonitoringTestsCounters>.Monitor(action);
-			GulpException(outerAction);
+			outerAction.GulpException();
 
 			GetValue(FailureCounter).Should().Be(valueBefore + 1);
 		}
@@ -214,7 +208,7 @@ namespace James.Diagnostics.IntegrationTests
 			var span = new TimeSpan(0, 0, 0, 0, expectedMilliseconds);
 			Monitoring<MonitoringTestsCounters>.Failure(span);
 
-			GetCounter(FailureCounter).RawValue.Should().Be(valueBefore + 1);
+			GetValue(FailureCounter).Should().Be(valueBefore + 1);
 		}
 
 		[Test]
@@ -241,63 +235,5 @@ namespace James.Diagnostics.IntegrationTests
 
 			action.ShouldNotThrow<ArgumentException>();
 		}
-
-		private long GetValue(string counterName)
-		{
-			var counter = GetCounter(counterName);
-			return counter == null ? 0 : counter.RawValue;
-		}
-
-		public void GulpException(Action action)
-		{
-			try
-			{
-				action();
-			}
-			catch (Exception)
-			{
-			}
-		}
-
-		private PerformanceCounter GetCounter(string counterName, string categoryName = "MonitoringTestsCounters")
-		{
-			PerformanceCounter counter = null;
-			const string machineName = ".";
-			const string instanceName = "_default";
-
-			if (CounterExists(counterName, categoryName, instanceName, machineName))
-			{
-				counter = new PerformanceCounter
-				{
-					CategoryName = categoryName,
-					CounterName = counterName,
-					InstanceName = instanceName,
-					MachineName = machineName
-				};
-			}
-
-			return counter;
-		}
-
-		private static bool CounterExists(string counterName, string categoryName, string instanceName, string machineName)
-		{
-			return PerformanceCounterCategory.Exists(categoryName)
-				&& PerformanceCounterCategory.InstanceExists(instanceName, categoryName, machineName)
-				&& PerformanceCounterCategory.CounterExists(counterName, categoryName, machineName);
-		}
-	}
-
-	public class MonitoringTestsCounters : CounterCategory, IMonitorableCounterCategory
-	{
-		public Counter Succeeded { get; set; }
-		public Counter Failed { get; set; }
-		public Counter ExecutionTime { get; set; }
-	}
-
-	public class AnotherMonitoringTestsCounters : CounterCategory, IMonitorableCounterCategory
-	{
-		public Counter Succeeded { get; set; }
-		public Counter Failed { get; set; }
-		public Counter ExecutionTime { get; set; }
 	}
 }

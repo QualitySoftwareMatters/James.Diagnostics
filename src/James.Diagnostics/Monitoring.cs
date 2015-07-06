@@ -8,6 +8,7 @@ namespace James.Diagnostics
 		where TCounter : class, IMonitorableCounterCategory, CounterCategory, new()
 	{
 		private static readonly ThreadSafeCounterRepository _repository;
+		public const string DefaultInstance = "_default";
 
 		static Monitoring()
 		{
@@ -22,7 +23,7 @@ namespace James.Diagnostics
 		internal static void Monitor(Func<bool> function, IStopwatch stopwatch)
 		{
 			stopwatch = stopwatch ?? new StopwatchWrapper();
-			var counter = _repository.GetCounter<TCounter>("_default");
+			var counter = _repository.GetCounter<TCounter>(DefaultInstance);
 
 			try
 			{
@@ -44,10 +45,19 @@ namespace James.Diagnostics
 				counter.Failed.Increment();
 				throw;
 			}
-			finally
-			{
+		}
 
-			}
+		public static T Monitor<T>(Func<T> function)
+		{
+			return Monitor(function, null);
+		}
+
+		internal static T Monitor<T>(Func<T> function, IStopwatch stopwatch)
+		{
+			T result = default(T);
+			Action action = () => result = function();
+			Monitor(action);
+			return result;
 		}
 
 		public static void Monitor(Action action)
@@ -68,14 +78,14 @@ namespace James.Diagnostics
 
 		public static void Success(TimeSpan elapsed)
 		{
-			var counter = _repository.GetCounter<TCounter>("_default");
+			var counter = _repository.GetCounter<TCounter>(DefaultInstance);
 			counter.Succeeded.Increment();
 			counter.ExecutionTime.Set(elapsed.TotalMilliseconds.AsLong());
 		}
 
 		public static void Failure(TimeSpan elapsed)
 		{
-			var counter = _repository.GetCounter<TCounter>("_default");
+			var counter = _repository.GetCounter<TCounter>(DefaultInstance);
 			counter.Failed.Increment();
 		}
 	}
