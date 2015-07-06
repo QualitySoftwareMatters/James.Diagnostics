@@ -33,13 +33,13 @@ namespace James.Diagnostics.IntegrationTests
 		}
 
 		[Test]
-		public void should_increment_succeeded_counter()
+		public void should_increment_success_counter()
 		{
 			GetValue(SuccessCounter).Should().Be(_successValueBefore + 1);
 		}
 
 		[Test]
-		public void should_not_increment_failed_counter()
+		public void should_not_increment_failure_counter()
 		{
 			GetValue(FailureCounter).Should().Be(_failureValueBefore);
 		}

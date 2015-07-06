@@ -1,8 +1,7 @@
 using System;
+using System.Collections.Generic;
 using System.Diagnostics;
-using System.Threading;
 
-using Magnum.Extensions;
 using Magnum.PerformanceCounters;
 
 namespace James.Diagnostics.IntegrationTests
@@ -12,21 +11,24 @@ namespace James.Diagnostics.IntegrationTests
 		protected const string ExecutionTimeCounter = "ExecutionTime";
 		protected const string SuccessCounter = "Succeeded";
 		protected const string FailureCounter = "Failed";
+		private static readonly Dictionary<string, PerformanceCounter> Counters = new Dictionary<string, PerformanceCounter>(); 
 
 		protected long GetValue(string counterName, string categoryName = "MonitoringTestsCounters")
 		{
 			const string machineName = ".";
 			const string instanceName = Monitoring<MonitoringTestsCounters>.DefaultInstance;
-			long returnValue = 0;
 
-			if (!CounterExists(counterName, categoryName, instanceName, machineName)) return returnValue;
+			if (!CounterExists(counterName, categoryName, instanceName, machineName)) return 0;
 
-			using (var counter = new PerformanceCounter(categoryName, counterName, instanceName, machineName))
+			var key = String.Format("{0}-{1}-{2}-{3}", categoryName, counterName, instanceName, machineName);
+
+			if (!Counters.ContainsKey(key))
 			{
-				returnValue = counter.RawValue;
+				var counter = new PerformanceCounter(categoryName, counterName, instanceName, machineName);
+				Counters.Add(key, counter);
 			}
-
-			return returnValue;
+			
+			return Counters[key].RawValue;
 		}
 
 		private bool CounterExists(string counterName, string categoryName, string instanceName, string machineName)

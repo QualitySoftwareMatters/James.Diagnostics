@@ -48,13 +48,13 @@ namespace James.Diagnostics.IntegrationTests
 		}
 
 		[Test]
-		public void should_not_increment_succeeded_counter()
+		public void should_not_increment_success_counter()
 		{
 			GetValue(SuccessCounter).Should().Be(_successValueBefore);
 		}
 
 		[Test]
-		public void should_increment_failed_counter()
+		public void should_increment_failure_counter()
 		{
 			GetValue(FailureCounter).Should().Be(_failureValueBefore + 1);
 		}
@@ -64,12 +64,6 @@ namespace James.Diagnostics.IntegrationTests
 		{
 			_exceptionResult.Should().BeOfType<ArgumentException>();
 			_exceptionResult.Message.Should().Be(ExpectedMessage);
-		}
-
-		private void GulpException<T>(Func<T> function)
-		{
-			Action action = () => function();
-			action.GulpException();
 		}
 	}
 }

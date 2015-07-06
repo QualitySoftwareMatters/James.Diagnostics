@@ -63,8 +63,15 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DoubleExtensionsTests.cs" />
+    <Compile Include="given_action_does_not_throw_when_monitoring.cs" />
+    <Compile Include="given_action_throws_when_monitoring.cs" />
+    <Compile Include="given_boolean_function_returns_false_when_monitoring.cs" />
+    <Compile Include="given_boolean_function_returns_true_when_monitoring.cs" />
+    <Compile Include="given_boolean_function_throws_when_monitoring.cs" />
     <Compile Include="given_function_fails_when_monitoring_with_return.cs" />
     <Compile Include="given_function_returns_successfully_when_monitoring_with_return.cs" />
+    <Compile Include="given_timespan_when_failure.cs" />
+    <Compile Include="given_timespan_when_success.cs" />
     <Compile Include="MonitoringTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="MonitoringTestsBase.cs" />
