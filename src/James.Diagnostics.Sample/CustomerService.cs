@@ -14,10 +14,7 @@ namespace James.Diagnostics.Sample
 
 		public IEnumerable<Customer> GetCustomers(int facilityId)
 		{
-			
-			IEnumerable<Customer> customers = null;
-			Monitoring<CustomerServiceCounters>.Monitor(() => customers = _repository.GetAll().Where(x => x.FacilityId == facilityId));
-			return customers;
+			return Monitoring<CustomerServiceCounters>.Monitor(() => _repository.GetAll().Where(x => x.FacilityId == facilityId));
 		}
 	}
 }
