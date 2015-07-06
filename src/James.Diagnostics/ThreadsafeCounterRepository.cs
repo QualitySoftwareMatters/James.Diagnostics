@@ -4,7 +4,7 @@ using Magnum.PerformanceCounters;
 
 namespace James.Diagnostics
 {
-	public class ThreadSafeCounterRepository
+	internal class ThreadSafeCounterRepository
 	{
 		private readonly CounterRepository _repository;
 		private static readonly object SyncRoot = new Object();

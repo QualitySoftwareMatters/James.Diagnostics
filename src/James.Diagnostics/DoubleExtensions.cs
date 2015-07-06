@@ -2,7 +2,7 @@
 
 namespace James.Diagnostics
 {
-	public static class DoubleExtensions
+	internal static class DoubleExtensions
 	{
 		public static long AsLong(this double value)
 		{

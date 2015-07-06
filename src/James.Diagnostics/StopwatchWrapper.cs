@@ -3,7 +3,7 @@ using System.Diagnostics;
 
 namespace James.Diagnostics
 {
-	public class StopwatchWrapper : IStopwatch
+	internal class StopwatchWrapper : IStopwatch
 	{
 		private readonly Stopwatch _stopwatch;
 

@@ -2,7 +2,7 @@
 
 namespace James.Diagnostics
 {
-	public interface IStopwatch
+	internal interface IStopwatch
 	{
 		void Start();
 		void Stop();
