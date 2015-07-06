@@ -10,7 +10,7 @@
 		<licenseUrl>https://github.com/QualitySoftwareMatters/James.Diagnostics/blob/master/LICENSE</licenseUrl>
 		<projectUrl>https://github.com/QualitySoftwareMatters/James.Diagnostics/wiki</projectUrl>
 		<requireLicenseAcceptance>false</requireLicenseAcceptance>
-		<releaseNotes><![CDATA[Added overload to the Monitor() method to allow for returning a parameter from the passed in function.]]></releaseNotes>
+		<releaseNotes><![CDATA[Made Monitoring<T>.Failure() clearer by removing the execution TimeSpan input parameter.  Execution time is not updated as part of this operation because it would skew the average execution times.]]></releaseNotes>
 		<copyright>$copyright</copyright>
 		<tags>Monitoring, Diagnostics, Performance, Maintainability, Counters</tags>
 		<dependencies>

@@ -83,7 +83,7 @@ namespace James.Diagnostics
 			counter.ExecutionTime.Set(elapsed.TotalMilliseconds.AsLong());
 		}
 
-		public static void Failure(TimeSpan elapsed)
+		public static void Failure()
 		{
 			var counter = _repository.GetCounter<TCounter>(DefaultInstance);
 			counter.Failed.Increment();

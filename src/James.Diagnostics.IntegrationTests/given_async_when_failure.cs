@@ -7,7 +7,7 @@ using NUnit.Framework;
 namespace James.Diagnostics.IntegrationTests
 {
 	[TestFixture]
-	public class given_timespan_when_failure : MonitoringTestsBase
+	public class given_async_when_failure : MonitoringTestsBase
 	{
 		private long _executionValueBefore;
 		private long _successValueBefore;
@@ -20,17 +20,12 @@ namespace James.Diagnostics.IntegrationTests
 			_failureValueBefore = GetValue(FailureCounter);
 			_executionValueBefore = GetValue(ExecutionTimeCounter);
 
-			const int expectedMilliseconds = 15;
-			var span = new TimeSpan(0, 0, 0, 0, expectedMilliseconds);
-
-			Monitoring<MonitoringTestsCounters>.Failure(span);
-
+			Monitoring<MonitoringTestsCounters>.Failure();
 		}
 
 		[Test]
-		public void should_not_update_requests_response_time_counter()
+		public void should_not_update_execution_time_counter()
 		{
-
 			GetValue(ExecutionTimeCounter).Should().Be(_executionValueBefore);
 		}
 

@@ -7,7 +7,7 @@ using NUnit.Framework;
 namespace James.Diagnostics.IntegrationTests
 {
 	[TestFixture]
-	public class given_timespan_when_success : MonitoringTestsBase
+	public class given_async_when_success : MonitoringTestsBase
 	{
 		private const int ExpectedMilliseconds = 1010;
 		private long _successValueBefore;

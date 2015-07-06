@@ -50,7 +50,7 @@ namespace James.Diagnostics.Sample
 			{
 				Console.WriteLine("	{0}, {1}", customer.LastName, customer.FirstName);
 			}
-
+			
 			DisplayLineBreak();
 		}
 
