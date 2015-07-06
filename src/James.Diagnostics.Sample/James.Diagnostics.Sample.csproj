@@ -34,9 +34,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="James.Diagnostics, Version=1.1.1.0, Culture=neutral, processorArchitecture=MSIL">
+    <Reference Include="James.Diagnostics, Version=1.1.2.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\James.Diagnostics.1.1.1.0\lib\net45\James.Diagnostics.dll</HintPath>
+      <HintPath>..\packages\James.Diagnostics.1.1.2.0\lib\net45\James.Diagnostics.dll</HintPath>
     </Reference>
     <Reference Include="Magnum">
       <HintPath>..\packages\Magnum.2.1.3\lib\NET40\Magnum.dll</HintPath>
