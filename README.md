@@ -52,12 +52,12 @@ Once you have these in place, you can begin to use those to <code lang="csharp">
 <pre lang="csharp">
 public IEnumerable<Customer> GetCustomers()
 {
-	return Monitoring<CustomerService_GetCustomerCounters>.Monitor(() => _repository.GetAll());
+	return Monitoring&lt;CustomerService_GetCustomerCounters&gt;.Monitor(() => _repository.GetAll());
 }
 
 public void UpdateCustomer(Customer customer)
 {
-	Monitoring<CustomerService_UpdateCustomerCounters>.Monitor(() => _repository.Update(customer));
+	Monitoring&lt;CustomerService_UpdateCustomerCounters&gt;.Monitor(() => _repository.Update(customer));
 }
 </pre>
 
