@@ -12,6 +12,11 @@ James.Diagnostics is a convention-based library built on top [Magnum](https://ww
 
 If you need other types of custom counters, libraries such as [Magnum](https://www.nuget.org/packages/Magnum/), written by Chris Patterson and Dru Sellers, can help you.
 
+## Installing the Library ##
+From the package manager console in Visual Studio, you can enter the following:
+
+<code lang="csharp">&gt; install-package James.Diagnostics</code>
+
 ## Creating Performance Counters ##
 Let's say you have a service that allows clients to get and update customer information.
 
