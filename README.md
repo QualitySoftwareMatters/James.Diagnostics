@@ -90,7 +90,7 @@ Takes a function and increments the success/failure counters depending on whethe
 
 ### <code lang="csharp">void Monitor(Func&lt;bool&gt; function)</code> ###
 
-Takes a function that returns a true/false and increments the success/failure counters depending on whether or not the function returns a true or false.  It will not return the boolean value to the client, however.  So, only use this method if are instrumenting something that gracefully handles exceptions by not bubbling them up. 
+Takes a function that returns a true/false and increments the success/failure counters depending on whether or not the function returns a true or false.  It will not return the boolean value to the client, however.  So, only use this method if you are instrumenting something that gracefully handles exceptions by not bubbling them up. 
 
 ## Asynchronous Monitoring Options ##
 
