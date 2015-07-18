@@ -68,9 +68,9 @@ public void UpdateCustomer(Customer customer)
 
 Below is a sample screenshot of Performance Monitor showing one of these performance counter categories in action.  In the graph there are three colored lines representing the three counters.
 
-* Blue Line - represents the execution times in milliseconds.  
-* Green Line - represents the number of successes.
-* Red Line - represents the number of failures.
+* **Blue Line** - represents the execution times in milliseconds.  
+* **Green Line** - represents the number of successes.
+* **Red Line** - represents the number of failures.
 
 ![capture-perfmon-james-diagnostics](https://cloud.githubusercontent.com/assets/177508/8517979/76eab4fe-238b-11e5-9c2a-febcaaca00cd.PNG)
 
