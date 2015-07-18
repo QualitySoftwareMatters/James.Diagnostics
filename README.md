@@ -4,7 +4,7 @@
 [![NuGet version (James.Diagnostics)](https://img.shields.io/nuget/dt/James.Diagnostics.svg?style=flat)](https://www.nuget.org/packages/James.Diagnostics/)
 
 ## Overview ##
-James.Diagnostics is a convention-based library built on top [Magnum](https://www.nuget.org/packages/Magnum/) to help you to add custom performance counters to your existing applications.  It is based on the assumption that in most cases you will want to instrument your application logic for:
+James.Diagnostics is a convention-based library built on top of [Magnum](https://www.nuget.org/packages/Magnum/) to help you to add custom performance counters to your existing applications.  It is based on the assumption that in most cases you will want to instrument your application logic for:
 
 * Successes
 * Failures
