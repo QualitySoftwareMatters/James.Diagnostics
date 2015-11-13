@@ -2,8 +2,6 @@ using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 
-using Magnum.PerformanceCounters;
-
 namespace James.Diagnostics.IntegrationTests
 {
 	public abstract class MonitoringTestsBase
@@ -38,18 +36,10 @@ namespace James.Diagnostics.IntegrationTests
 			       && PerformanceCounterCategory.CounterExists(counterName, categoryName, machineName);
 		}
 
-		public class MonitoringTestsCounters : CounterCategory, IMonitorableCounterCategory
-		{
-			public Counter Succeeded { get; set; }
-			public Counter Failed { get; set; }
-			public Counter ExecutionTime { get; set; }
-		}
+		public class MonitoringTestsCounters : MonitorableCounterCategory
+		{}
 
-		public class AnotherMonitoringTestsCounters : CounterCategory, IMonitorableCounterCategory
-		{
-			public Counter Succeeded { get; set; }
-			public Counter Failed { get; set; }
-			public Counter ExecutionTime { get; set; }
-		}
+		public class AnotherMonitoringTestsCounters : MonitorableCounterCategory
+		{}
 	}
 }

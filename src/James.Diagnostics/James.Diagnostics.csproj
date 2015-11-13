@@ -50,6 +50,7 @@
     <Compile Include="DoubleExtensions.cs" />
     <Compile Include="IMonitorableCounterCategory.cs" />
     <Compile Include="IStopwatch.cs" />
+    <Compile Include="MonitorableCounterCategory.cs" />
     <Compile Include="Monitoring.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ThreadSafeCounterRepository.cs" />
