@@ -32,23 +32,17 @@ public void UpdateCustomer(Customer customer)
 }
 </pre>
 
-Creating custom performance counters for these two methods is as simple as inheriting CounterCategory and implementing the IMonitorableCounterCategory for each as shown below.
+Creating custom performance counters for these two methods is as simple as inheriting from MonitorableCounterCategory as shown below.
 
 <pre lang="csharp">
 public class CustomerService_GetCustomersCounters 
-	: CounterCategory, IMonitorableCounterCategory
+	: MonitorableCounterCategory
 {
-  public Counter Succeeded { get; set; }
-  public Counter Failed { get; set; }
-  public Counter ExecutionTime { get; set; }
 }
 
 public class CustomerService_UpdateCustomerCounters 
-	: CounterCategory, IMonitorableCounterCategory
+	: MonitorableCounterCategory
 {
-  public Counter Succeeded { get; set; }
-  public Counter Failed { get; set; }
-  public Counter ExecutionTime { get; set; }
 }
 </pre>
 
