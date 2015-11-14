@@ -10,7 +10,7 @@
 		<licenseUrl>https://github.com/QualitySoftwareMatters/James.Diagnostics/blob/master/LICENSE</licenseUrl>
 		<projectUrl>https://github.com/QualitySoftwareMatters/James.Diagnostics</projectUrl>
 		<requireLicenseAcceptance>false</requireLicenseAcceptance>
-		<releaseNotes><![CDATA[Made a few classes internal that did not need to be exposed.]]></releaseNotes>
+		<releaseNotes><![CDATA[Added a base class for monitorable counter categories that makes creating them easier.]]></releaseNotes>
 		<copyright>$copyright</copyright>
 		<tags>Monitoring, Diagnostics, Performance, Maintainability, Counters</tags>
 		<dependencies>
